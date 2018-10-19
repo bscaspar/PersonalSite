@@ -1,0 +1,22 @@
+body {
+    background: url('../assets/rainier.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: whitesmoke;
+}
+
+.welcome-left{
+    background: rgba(254, 254, 254, 0.1)
+}
+
+.welcome-left-text{
+    font-family: 'Sura', Times, 'Times New Roman', serif;
+    font-size: 40px;
+}
+
+.body {
+    padding-block-start: 10px;
+}
+
+p {
+    margin: 0 0 5px
+}
