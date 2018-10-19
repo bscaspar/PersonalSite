@@ -6,15 +6,15 @@ class WelcomePage extends Component {
         return (
             <div className="body">
                 <div className="container">
-                    <div className="row">
+                    <div className="row welcome">
                         <div className="col-md-6 welcome-left">
-                            <div className="welcome-left-text">
+                            <div className="welcome-left-text one">
                                 <p>{this.props.message.welcome}</p>
                                 <p>{this.props.message.name}</p>
                                 <p>{this.props.message.site}</p>
                             </div>
                         </div>
-                        <div className="col-md-6 welcome-mid">
+                        <div className="col-md-6 welcome-right">
                             {this.props.message.description}
                         </div>
                     </div>

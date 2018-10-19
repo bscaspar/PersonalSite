@@ -1,15 +1,26 @@
 body {
-    background: url('../assets/rainier.jpg') no-repeat center center fixed;
+    background: url('../assets/rainier_fade.jpg') no-repeat center center fixed;
     background-size: cover;
     color: whitesmoke;
+}
+
+.welcome {
+    margin-top: 5px
 }
 
 .welcome-left{
     background: rgba(254, 254, 254, 0.1)
 }
 
-.welcome-left-text{
+/* .welcome-left-text{
     font-family: 'Sura', Times, 'Times New Roman', serif;
+    font-size: 40px;
+} */
+
+.welcome-left-text{
+    /* font-family: "Assistant", sans-serif; */
+    /* font-family: "Open Sans", sans-serif; */
+    /* font-family: "Alegreya Sans", sans-serif; */
     font-size: 40px;
 }
 
@@ -18,5 +29,17 @@ body {
 }
 
 p {
-    margin: 0 0 5px
+    margin: 0 0 1px
+}
+
+.one {
+    font-family: "Assistant", sans-serif;
+}
+
+.two {
+    font-family: "Open Sans", sans-serif;
+}
+
+.three {
+    font-family: "Alegreya Sans", sans-serif;
 }
