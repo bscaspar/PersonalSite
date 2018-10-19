@@ -6,7 +6,7 @@ const Home = () => {
         welcome: "Hi",
         name: "I'm Brady",
         site: "This is my new site",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
+        description: "I am a new web developer and will be using this site as a personal design project, a testing ground for new ideas and frameworks (if you find anything broken, email me!) and a showcase of what I can do. For more info about me, click here."
     }
 
     return (
