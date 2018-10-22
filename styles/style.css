@@ -1,21 +1,20 @@
 body {
-    color: #2e2e2e;
-}
-
-.welcome {
     margin-top: 10px;
 }
-
-.welcome-left {
-    background-color: #00000024;
-    font-family: "Source Sans Pro", sans-serif;
-    font-size: 32px;
+.bs-square {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
     margin-left: 30px;
+}
+
+.square-left {
+    background-color: #00000024;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 32px;
+    position: absolute;
     padding-left: 15px;
 }
 
@@ -23,20 +22,6 @@ body {
     font-family: "Source Sans Pro", sans-serif;
     position: absolute;
     font-size: 16px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-left: 30px;
-}
-
-.welcome-center {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-left: 30px;
 }
 
 .dummy {

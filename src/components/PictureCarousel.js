@@ -8,10 +8,10 @@ export const PictureCarousel = () => {
         <div>
             <Carousel indicators={false} controls={false}>
                 <Carousel.Item>
-                    <img width={400} height={400} alt="400x400" src={bw_mountains_moon} />
+                    <img src={bw_mountains_moon} />
                 </Carousel.Item>
                 <Carousel.Item>
-                    <img width={400} height={400} alt="400x400" src={methow_valley} />
+                    <img src={methow_valley} />
                 </Carousel.Item>
             </Carousel>
 

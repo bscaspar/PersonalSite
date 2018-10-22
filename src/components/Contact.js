@@ -1,30 +1,27 @@
 import React, { Component } from 'react';
-import { PictureCarousel } from './PictureCarousel';
 
-class WelcomePage extends Component {
+class Contact extends Component {
 
     render() {
         return (
-                <div className="container welcome">
+            <div className="container ">
                     <div className="row">
                         <div className="col-md-4 col-sm-4 col-xs-4">
                             <div className="dummy"></div>
                             <div className="bs-square square-left">
-                                <p>{this.props.message.welcome}</p>
-                                <p>{this.props.message.name}</p>
-                                <p>{this.props.message.site}</p>
+                                Get in touch
                             </div>
                         </div>
                         <div className="col-md-4 col-sm-4 col-xs-4" >
                             <div className="dummy"></div>
-                            <div className="bs-square welcome-center">
-                                {this.props.message.description}
+                            <div className="bs-square">
+
                             </div>
                         </div>
                         <div className="col-md-4 col-sm-4 col-xs-4">
                             <div className="dummy"></div>
-                            <div className="bs-square welcome-right">
-                                <PictureCarousel />
+                            <div className="bs-square">
+                                
                             </div>
                         </div>
                     </div>
@@ -32,4 +29,5 @@ class WelcomePage extends Component {
         )
     }
 }
-export default WelcomePage;
+
+export default Contact;
