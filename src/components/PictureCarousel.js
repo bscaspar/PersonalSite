@@ -1,16 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import bw_mountains_moon from '../../assets/bw_mountains_moon.jpg';
+import methow_valley from '../../assets/methow_valley.jpg';
 
 export const PictureCarousel = () => {
     return (
         <div>
-            <Carousel>
+            <Carousel indicators={false} controls={false}>
                 <Carousel.Item>
-                    <img width={300} height={300} alt="300x300" src={bw_mountains_moon} />
-                    <Carousel.Caption>
-                        <h3>First slide</h3>
-                    </Carousel.Caption>
+                    <img width={400} height={400} alt="400x400" src={bw_mountains_moon} />
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img width={400} height={400} alt="400x400" src={methow_valley} />
                 </Carousel.Item>
             </Carousel>
 

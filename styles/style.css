@@ -1,6 +1,4 @@
 body {
-    /* background: url('../assets/rainier_fade.jpg') no-repeat center center fixed; */
-    /* background-size: cover; */
     color: #2e2e2e;
 }
 
@@ -10,7 +8,7 @@ body {
 
 .welcome-left {
     background-color: #00000024;
-    font-family: "Assistant", sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     font-size: 32px;
     position: absolute;
     top: 0;
