@@ -1,28 +1,62 @@
 body {
-    background: url('../assets/rainier_fade.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: whitesmoke;
+    /* background: url('../assets/rainier_fade.jpg') no-repeat center center fixed; */
+    /* background-size: cover; */
+    color: #2e2e2e;
 }
 
 .welcome {
-    margin-top: 5px
+    margin-top: 10px;
 }
 
 .welcome-left {
-    background: rgba(254, 254, 254, 0.1);
+    background-color: #00000024;
     font-family: "Assistant", sans-serif;
-    font-size: 40px;
+    font-size: 32px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: 30px;
+    padding-left: 15px;
 }
 
 .welcome-right {
     font-family: "Source Sans Pro", sans-serif;
+    position: absolute;
     font-size: 16px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: 30px;
 }
 
-.body {
-    padding-block-start: 10px;
+.welcome-center {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: 30px;
+}
+
+.dummy {
+    padding-bottom:100%
 }
 
 p {
     margin: 0 0 1px
+}
+
+html {
+    height:100%;
+}
+
+body {
+    height:100%;
+}
+
+.app{
+    height:100%;
 }

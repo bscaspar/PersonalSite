@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 const VENDOR_LIBS = [
-    'react', 'react-dom', 'react-router-dom', 'react-bootstrap', 'bootstrap', 'jquery', 'popper.js'
+    'react', 'react-dom', 'react-router-dom', 'react-bootstrap', 'bootstrap', 'bootstrap-4-react', 'jquery', 'popper.js'
 ]
 
 
@@ -26,10 +26,6 @@ const config = {
                 exclude: /node_modules/,
                 use: 'babel-loader'
             },
-            // {
-            //     loader: ['style-loader', 'css-loader'],
-            //     test: /\.css$/
-            // },
             {
                 test: /\.css$/,
                 use: [
@@ -41,7 +37,10 @@ const config = {
             },
             {
                 test: /\.png$/,
-                loader: "url-loader?limit=100000"
+                loader: "url-loader",
+                options: {
+                    limit:100000
+                }
             },
             {
                 test: /\.jpg/,
@@ -49,11 +48,19 @@ const config = {
             },
             {
                 test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+                loader: 'url-loader',
+                options: {
+                    limit:10000,
+                    mimetype:'application/font-woff'
+                }
             },
             {
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+                loader: 'url-loader',
+                options: {
+                    limit:10000,
+                    mimetype:'application/octet-stream'
+                }
             },
             {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -61,7 +68,11 @@ const config = {
             },
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url-loader?limit=10000&mimetype=image/svg+xml'
+                loader: 'url-loader',
+                options: {
+                    limit:10000,
+                    mimetype:'image/svg+xml'
+                }
             }
         ]
     },
