@@ -1,8 +1,16 @@
-import React from 'react';
-import WelcomePage from './WelcomePage';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import WelcomePage from './welcome_page';
+
+export const PAGE_NAMES = {
+    home: "home",
+    contact: "contact",
+    aboutMe: "aboutMe"
+}
+
 const Home = () => {
+    
     const welcomeMessage = { 
         welcome: "Hi",
         name: "I'm Brady",
@@ -17,7 +25,7 @@ const Home = () => {
 
     return (
         <div>
-            <WelcomePage message={welcomeMessage} />
+            <WelcomePage message = {welcomeMessage} />    
         </div>
     );
 };
