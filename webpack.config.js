@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 const VENDOR_LIBS = [
-    'react', 'react-dom', 'react-router-dom', 'react-bootstrap', 'bootstrap', 'jquery', 'popper.js'
+    'react', 'react-dom', 'react-router-dom', 'react-bootstrap', 'bootstrap', 'jquery', 'popper.js', 'emailjs-com'
 ]
 
 

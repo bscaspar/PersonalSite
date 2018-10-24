@@ -1,31 +1,40 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import WelcomePage from './welcome_page';
+import RenderUi from './renderUi';
+import { PictureCarousel} from './picture_carousel';
 
-export const PAGE_NAMES = {
-    home: "home",
-    contact: "contact",
-    aboutMe: "aboutMe"
-}
 
 const Home = () => {
-    
-    const welcomeMessage = { 
-        welcome: "Hi",
-        name: "I'm Brady",
-        site: "Welcome to my site!",
-        description: (<div>I am a new web developer and will be using this site as a personal design project, a testing ground for new ideas and frameworks (if you find anything broken, email me!) and a showcase of what I can do. For more info about me,&nbsp;
+
+    const content = {
+        leftPanel: (
+            <div>
+                <p>Hi</p>
+                <p>I'm Brady</p>
+                <p>Welcome to my site!</p>
+            </div>
+        ),
+        centerPanel: (
+            <div>
+                I am a new web developer and will be using this site as a personal design project, a testing ground for new ideas and frameworks (if you find anything broken, email me!) and a showcase of what I can do. For more info about me,&nbsp;
                 <Link to="/aboutme">
                     click here
                 </Link>
                 .
-            </div>)
+            </div>
+        ),
+        rightPanel: (
+            <div>
+                <PictureCarousel />
+            </div>
+        )
+
     }
 
     return (
         <div>
-            <WelcomePage message = {welcomeMessage} />    
+            <RenderUi content = {content} />
         </div>
     );
 };
