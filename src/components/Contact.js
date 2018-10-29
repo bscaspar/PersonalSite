@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { FormGroup, ControlLabel, FormControl, Button } from 'react-bootstrap';
+import { withStyles } from '@material-ui/core/styles';
+import { Grid, Typography, TextField, Button } from '@material-ui/core';
+import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import * as emailjs from 'emailjs-com';
-
+import { Launch } from '@material-ui/icons';
 
 const FieldGroup = ({ id, label, ...props }) => {
     return (
@@ -12,6 +14,27 @@ const FieldGroup = ({ id, label, ...props }) => {
 
     );
 };
+
+const styles = (theme) => ({
+    container: {
+        flexGrow: 1,
+        padding: theme.spacing.unit * 2
+    },
+    item: {
+        margin: theme.spacing.unit
+    },
+    textField: {
+        margin: theme.spacing.unit,
+        width: '95%'
+    },
+    button: {
+        margin: theme.spacing.unit,
+        float: "right"
+    },
+    contactContainer: {
+        marginTop: theme.spacing.unit
+    }
+});
 
 class Contact extends Component {
     constructor(props) {
@@ -27,8 +50,9 @@ class Contact extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+
     handleChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
+        this.setState({ [e.target.id]: e.target.value });
     }
 
     handleSubmit(e) {
@@ -56,49 +80,79 @@ class Contact extends Component {
     }
 
     render() {
+        const { classes } = this.props;
+
         return (
-            <div className="container ">
-                <div className="row">
-                    <div className="col-md-4 col-sm-4 col-xs-4">
-                        <div className="dummy"></div>
-                        <div className="bs-square square-left">
-                            Get in touch
-                            </div>
+            <Grid container className={classes.container} spacing={8}>
+                <Grid item sm={12} md={6}>
+                    <TextField
+                        id="name"
+                        label="Name"
+                        variant="outlined"
+                        required
+                        className={classes.textField}
+                        value={this.state.name}
+                        onChange={this.handleChange}
+                    />
+                    <TextField
+                        id="email"
+                        label="Email"
+                        variant="outlined"
+                        required
+                        className={classes.textField}
+                        value={this.state.email}
+                        onChange={this.handleChange}
+                    />
+                    <TextField
+                        id="message"
+                        label="Message"
+                        multiline
+                        rows={2}
+                        variant="outlined"
+                        required
+                        className={classes.textField}
+                        value={this.state.message}
+                        onChange={this.handleChange}
+                    />
+                    <Button variant="contained" className={classes.button} color="primary" onClick={this.handleSubmit}>
+                        Submit
+                    </Button>
+                </Grid>
+                <Grid item sm={12} md={6}>
+                    <div className={classes.item}>
+                        <div className={classes.contactContainer}>
+                            <Typography variant="h5">
+                                LinkedIn
+                            </Typography>
+                            <Typography variant="body1" noWrap={true}>
+                                <a target="_blank" href="https://www.linkedin.com/in/bradyscaspar">
+                                    https://www.linkedin.com/in/bradyscaspar
+                            </a>
+                            </Typography>
+                        </div>
+                        <div className={classes.contactContainer}>
+                            <Typography variant="h5" noWrap>GitHub</Typography>
+                            <Typography variant="body1" noWrap={true}>
+                                <a target="_blank" href="https://github.com/bscaspar">
+                                    https://github.com/bscaspar
+                                <Launch fontSize="inherit" />
+                                </a>
+                            </Typography>
+                        </div>
+                        <div className={classes.contactContainer}>
+                            <Typography variant="h5" noWrap>Instagram</Typography>
+                            <Typography variant="body1" noWrap={true}>
+                                <a target="_blank" href="https://www.instagram.com/friendly_g/">
+                                    https://www.instagram.com/friendly_g/
+                                <Launch fontSize="inherit" />
+                                </a>
+                            </Typography>
+                        </div>
                     </div>
-                    <div className="col-md-8 col-sm-8 col-xs-8" >
-                        <form>
-                            <FieldGroup
-                                id="nameInput"
-                                type="text"
-                                label="Name"
-                                name="name"
-                                value={this.state.name}
-                                onChange={this.handleChange}
-                            />
-                            <FieldGroup
-                                id="emailInput"
-                                type="email"
-                                label="Email"
-                                name="email"
-                                value={this.state.email}
-                                onChange={this.handleChange}
-                            />
-                            <FormGroup controlId="messageTextArea">
-                                <ControlLabel>Message</ControlLabel>
-                                <FormControl
-                                    componentClass="textarea"
-                                    name="message"
-                                    value={this.state.message}
-                                    onChange={this.handleChange}
-                                />
-                            </FormGroup>
-                            <Button bsStyle="primary" type="submit" onClick={this.handleSubmit}>Submit</Button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+                </Grid>
+            </Grid>
         )
     }
 }
 
-export default Contact;
+export default withStyles(styles)(Contact);

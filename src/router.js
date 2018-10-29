@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Home from './components/home';
 import AboutMe from './components/about_me';
@@ -7,15 +7,13 @@ import Contact from './components/contact';
 
 const Routes = () => {
     return(
-        <BrowserRouter>
+        <Router>
             <div>
-                <Switch>
-                    <Route path="/AboutMe" component={AboutMe} />
-                    <Route path="/Contact" component={Contact} />
-                    <Route path="/" component={Home} />
-                </Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/AboutMe" component={AboutMe} />
+                <Route path="/Contact" component={Contact} />
             </div>
-        </BrowserRouter>
+        </Router>
     );
 };
 

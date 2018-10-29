@@ -1,14 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'bootstrap/dist/css/bootstrap.css';
+import { CssBaseline } from '@material-ui/core';
 import '../styles/style.css';
 
-import Routes from './router';
+import Home from './components/home';
 
+import Album from './components/album';
 
 const App = () => {
     return(
-        <Routes />
+        <React.Fragment>
+            <CssBaseline />
+            <Home />
+        
+            {/*<Album />*/}
+            
+        </React.Fragment>
     )
 }
 
