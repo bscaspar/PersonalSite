@@ -1,19 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, Typography, TextField, Button } from '@material-ui/core';
-import { FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import * as emailjs from 'emailjs-com';
-import { Launch } from '@material-ui/icons';
-
-const FieldGroup = ({ id, label, ...props }) => {
-    return (
-        <FormGroup controlId={id}>
-            <ControlLabel>{label}</ControlLabel>
-            <FormControl {...props} />
-        </FormGroup>
-
-    );
-};
 
 const styles = (theme) => ({
     container: {
@@ -29,10 +17,17 @@ const styles = (theme) => ({
     },
     button: {
         margin: theme.spacing.unit,
-        float: "right"
+        float: 'right'
     },
     contactContainer: {
         marginTop: theme.spacing.unit
+    },
+    note: {
+        paddingLeft: theme.spacing.unit,
+        paddingRight: theme.spacing.unit
+    },
+    error: {
+        color: '#F44336'
     }
 });
 
@@ -43,7 +38,8 @@ class Contact extends Component {
         this.state = {
             name: '',
             email: '',
-            message: ''
+            message: '',
+            errorMessage: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -57,26 +53,29 @@ class Contact extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const serviceId = "bscaspar_gmail";
-        const templateId = "template_G6LO5SQg";
-        const userId = "user_ckhJga60nVGejK8C2ZFin";
+        this.sendEmail(this.state.name, this.state.email, this.state.message);
+        this.setState({
+            name: '',
+            email: '',
+            message: '',
+            errorMessage: ''
+        })
+    }
+    sendEmail(name, email, message) {
+
+        const SERVICE_ID = "bscaspar_gmail";
+        const TEMPLATE_ID = "template_G6LO5SQg";
+        const USER_ID = "user_ckhJga60nVGejK8C2ZFin";
         emailjs.send(
-            serviceId,
-            templateId,
+            SERVICE_ID,
+            TEMPLATE_ID,
             {
-                name: this.state.name,
-                email: this.state.email,
-                message: this.state.message
+                name: name,
+                email: email,
+                message: message
             },
-            userId
+            USER_ID
         )
-            .then(() => {
-                this.setState({
-                    name: '',
-                    email: '',
-                    message: ''
-                })
-            });
     }
 
     render() {
@@ -85,49 +84,53 @@ class Contact extends Component {
         return (
             <Grid container className={classes.container} spacing={8}>
                 <Grid item sm={12} md={6}>
-                    <TextField
-                        id="name"
-                        label="Name"
-                        variant="outlined"
-                        required
-                        className={classes.textField}
-                        value={this.state.name}
-                        onChange={this.handleChange}
-                    />
-                    <TextField
-                        id="email"
-                        label="Email"
-                        variant="outlined"
-                        required
-                        className={classes.textField}
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                    />
-                    <TextField
-                        id="message"
-                        label="Message"
-                        multiline
-                        rows={2}
-                        variant="outlined"
-                        required
-                        className={classes.textField}
-                        value={this.state.message}
-                        onChange={this.handleChange}
-                    />
-                    <Button variant="contained" className={classes.button} color="primary" onClick={this.handleSubmit}>
-                        Submit
+                    <form onSubmit={this.handleSubmit}>
+                        <TextField
+                            id="name"
+                            label="Name"
+                            variant="outlined"
+                            required
+                            className={classes.textField}
+                            value={this.state.name}
+                            onChange={this.handleChange}
+                        />
+                        <TextField
+                            id="email"
+                            label="Email"
+                            type="email"
+                            variant="outlined"
+                            required
+                            className={classes.textField}
+                            value={this.state.email}
+                            onChange={this.handleChange}
+                        />
+                        <TextField
+                            id="message"
+                            label="Message"
+                            multiline
+                            rows={2}
+                            variant="outlined"
+                            required
+                            className={classes.textField}
+                            value={this.state.message}
+                            onChange={this.handleChange}
+                        />
+                        <Typography className={classes.note} variant="caption">(You can also just email me, bradyscaspar@outlook.com, the form does literally the same thing and is here for practice) </Typography>
+                        <Button variant="contained" className={classes.button} color="primary" type="submit">
+                            Submit
                     </Button>
+                    </form>
                 </Grid>
                 <Grid item sm={12} md={6}>
                     <div className={classes.item}>
                         <div className={classes.contactContainer}>
                             <Typography variant="h5">
                                 LinkedIn
-                            </Typography>
+                                </Typography>
                             <Typography variant="body1" noWrap={true}>
                                 <a target="_blank" href="https://www.linkedin.com/in/bradyscaspar">
                                     https://www.linkedin.com/in/bradyscaspar
-                            </a>
+                                    </a>
                             </Typography>
                         </div>
                         <div className={classes.contactContainer}>
@@ -135,19 +138,18 @@ class Contact extends Component {
                             <Typography variant="body1" noWrap={true}>
                                 <a target="_blank" href="https://github.com/bscaspar">
                                     https://github.com/bscaspar
-                                <Launch fontSize="inherit" />
-                                </a>
+                                    </a>
                             </Typography>
                         </div>
                         <div className={classes.contactContainer}>
                             <Typography variant="h5" noWrap>Instagram</Typography>
                             <Typography variant="body1" noWrap={true}>
-                                <a target="_blank" href="https://www.instagram.com/friendly_g/">
-                                    https://www.instagram.com/friendly_g/
-                                <Launch fontSize="inherit" />
+                                <a target="_blank" href="https://instagram.com/friendly_g">
+                                    https://instagram.com/friendly_g
                                 </a>
                             </Typography>
                         </div>
+
                     </div>
                 </Grid>
             </Grid>

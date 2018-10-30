@@ -12,7 +12,7 @@ const styles = (theme) => ({
         flexGrow: 1
     },
     tabSelected: {
-        backgroundColor: theme.palette.grey[50]
+        backgroundColor: theme.palette.grey[100]
     }
 });
 

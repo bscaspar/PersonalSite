@@ -24,6 +24,9 @@ const AboutMe = (props) => {
             </Grid>
             <Grid item xs={4}>
                 <PictureCarousel />
+                <Typography variant="caption">
+                    A few pics from my time off (and practice with a slideshow)
+                </Typography>
             </Grid>
 
         </Grid>
