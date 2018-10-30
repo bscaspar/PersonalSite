@@ -13,7 +13,7 @@ const styles = (theme) => ({
     },
     tabSelected: {
         backgroundColor: theme.palette.grey[100]
-    }
+    },
 });
 
 class BodyPaper extends React.Component {
@@ -27,7 +27,7 @@ class BodyPaper extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event, value) {
+    handleChange(e, value) {
         this.setState({ value });
     }
 
@@ -38,8 +38,8 @@ class BodyPaper extends React.Component {
         return (
             <Paper className={classes.root} square={true} elevation={1}>
                 <Grid container className={classes.root.grid}>
-                    <Grid item sm={1} md={1} lg={2} />
-                    <Grid item sm={10} md={10} lg={8}>
+                    <Grid item xs={1} lg={2} />
+                    <Grid item xs={10} lg={8}>
                         <Tabs
                             value={this.state.value}
                             onChange={this.handleChange}
@@ -53,7 +53,7 @@ class BodyPaper extends React.Component {
                         {value === 0 && <AboutMe />}
                         {value === 1 && <Contact />}
                     </Grid>
-                    <Grid item sm={1} md={1} lg={2} />
+                    <Grid item xs={1} lg={2} />
                 </Grid>
 
             </Paper>

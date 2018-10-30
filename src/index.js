@@ -1,20 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
+import customTheme from './theme/theme';
 import '../styles/style.css';
 
-import Home from './components/home';
-
-import Album from './components/album';
+import Home from './components/home'; 
 
 const App = () => {
     return(
         <React.Fragment>
-            <CssBaseline />
+        <CssBaseline />
+        <MuiThemeProvider theme={customTheme}>
             <Home />
-        
-            {/*<Album />*/}
-            
+        </MuiThemeProvider>
         </React.Fragment>
     )
 }

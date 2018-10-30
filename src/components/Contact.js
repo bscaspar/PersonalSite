@@ -17,7 +17,9 @@ const styles = (theme) => ({
     },
     button: {
         margin: theme.spacing.unit,
-        float: 'right'
+        float: 'right',
+        backgroundColor: theme.palette.secondary,
+        color: theme.palette.primary.light
     },
     contactContainer: {
         marginTop: theme.spacing.unit
@@ -26,9 +28,19 @@ const styles = (theme) => ({
         paddingLeft: theme.spacing.unit,
         paddingRight: theme.spacing.unit
     },
-    error: {
-        color: '#F44336'
-    }
+    emailFail: {
+        color: '#F44336',
+        width: '60%',
+        float: 'right',
+        transition: 'all 250ms linear',
+        padding: theme.spacing.unit,
+    },
+    emailSuccess: {
+        color: '#4CAF50',
+        float: 'right',
+        transition: 'all 250ms linear',
+        padding: theme.spacing.unit,
+    },
 });
 
 class Contact extends Component {
@@ -39,7 +51,9 @@ class Contact extends Component {
             name: '',
             email: '',
             message: '',
-            errorMessage: ''
+            errorMessage: '',
+            emailSending: false,
+            emailSuccess: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -53,15 +67,20 @@ class Contact extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.sendEmail(this.state.name, this.state.email, this.state.message);
+        this.setState({emailSending: true}, () => {
+            this.sendEmail(this.state.name, this.state.email, this.state.message);
+        })
+        
         this.setState({
             name: '',
             email: '',
             message: '',
-            errorMessage: ''
+            errorMessage: '',
         })
     }
     sendEmail(name, email, message) {
+
+        this.setState({emailSending: true},)
 
         const SERVICE_ID = "bscaspar_gmail";
         const TEMPLATE_ID = "template_G6LO5SQg";
@@ -75,86 +94,102 @@ class Contact extends Component {
                 message: message
             },
             USER_ID
-        )
+        ).then(
+            (response) => {
+                this.setState({ emailSuccess: true,
+                                emailSending: false });
+                setTimeout (() => {
+                    this.setState({
+                        emailSuccess: ''
+                    });
+                    }, 3000);
+            }, 
+            (error) => {
+                this.setState({ emailSuccess: false,
+                                emailSending: false });
+        });
     }
 
-    render() {
-        const { classes } = this.props;
+render() {
+    const { classes } = this.props;
 
-        return (
-            <Grid container className={classes.container} spacing={8}>
-                <Grid item sm={12} md={6}>
-                    <form onSubmit={this.handleSubmit}>
-                        <TextField
-                            id="name"
-                            label="Name"
-                            variant="outlined"
-                            required
-                            className={classes.textField}
-                            value={this.state.name}
-                            onChange={this.handleChange}
-                        />
-                        <TextField
-                            id="email"
-                            label="Email"
-                            type="email"
-                            variant="outlined"
-                            required
-                            className={classes.textField}
-                            value={this.state.email}
-                            onChange={this.handleChange}
-                        />
-                        <TextField
-                            id="message"
-                            label="Message"
-                            multiline
-                            rows={2}
-                            variant="outlined"
-                            required
-                            className={classes.textField}
-                            value={this.state.message}
-                            onChange={this.handleChange}
-                        />
-                        <Typography className={classes.note} variant="caption">(You can also just email me, bradyscaspar@outlook.com, the form does literally the same thing and is here for practice) </Typography>
-                        <Button variant="contained" className={classes.button} color="primary" type="submit">
-                            Submit
+    return (
+        <Grid container className={classes.container} spacing={8}>
+            <Grid item xs={12} md={6}>
+                <form onSubmit={this.handleSubmit}>
+                    <TextField
+                        id="name"
+                        label="Name"
+                        variant="outlined"
+                        required
+                        className={classes.textField}
+                        value={this.state.name}
+                        onChange={this.handleChange}
+                    />
+                    <TextField
+                        id="email"
+                        label="Email"
+                        type="email"
+                        variant="outlined"
+                        required
+                        className={classes.textField}
+                        value={this.state.email}
+                        onChange={this.handleChange}
+                    />
+                    <TextField
+                        id="message"
+                        label="Message"
+                        multiline
+                        rows={2}
+                        variant="outlined"
+                        required
+                        className={classes.textField}
+                        value={this.state.message}
+                        onChange={this.handleChange}
+                    />
+                    <Typography className={classes.note} variant="caption">(You can also just email me, bradyscaspar@outlook.com, the form does literally the same thing and is here for practice) </Typography>
+                    <Button variant="contained" className={classes.button} color="inherit" type="submit" disabled={this.state.emailSending}>
+                        Submit
                     </Button>
-                    </form>
-                </Grid>
-                <Grid item sm={12} md={6}>
-                    <div className={classes.item}>
-                        <div className={classes.contactContainer}>
-                            <Typography variant="h5">
-                                LinkedIn
-                                </Typography>
-                            <Typography variant="body1" noWrap={true}>
-                                <a target="_blank" href="https://www.linkedin.com/in/bradyscaspar">
-                                    https://www.linkedin.com/in/bradyscaspar
-                                    </a>
-                            </Typography>
-                        </div>
-                        <div className={classes.contactContainer}>
-                            <Typography variant="h5" noWrap>GitHub</Typography>
-                            <Typography variant="body1" noWrap={true}>
-                                <a target="_blank" href="https://github.com/bscaspar">
-                                    https://github.com/bscaspar
-                                    </a>
-                            </Typography>
-                        </div>
-                        <div className={classes.contactContainer}>
-                            <Typography variant="h5" noWrap>Instagram</Typography>
-                            <Typography variant="body1" noWrap={true}>
-                                <a target="_blank" href="https://instagram.com/friendly_g">
-                                    https://instagram.com/friendly_g
-                                </a>
-                            </Typography>
-                        </div>
-
-                    </div>
-                </Grid>
+                    {this.state.emailSuccess === true && <Typography className={classes.emailSuccess} variant="body2">Success!</Typography>}
+                    {this.state.emailSuccess === false && <Typography className={classes.emailFail} variant="body2">The email didn't work :( try again or use the email listed above</Typography>}
+                </form>
             </Grid>
-        )
-    }
+            <Grid item xs={12} md={6}>
+                <div className={classes.item}>
+                    <div className={classes.contactContainer}>
+                        <Typography variant="h5">
+                            LinkedIn
+                                </Typography>
+                        <Typography variant="body1" noWrap={true}>
+                            <a target="_blank" href="https://www.linkedin.com/in/bradyscaspar">
+                                https://www.linkedin.com/in/bradyscaspar
+                                    </a>
+                        </Typography>
+                    </div>
+                    <div className={classes.contactContainer}>
+                        <Typography variant="h5" noWrap>GitHub</Typography>
+                        <Typography variant="body1" noWrap={true}>
+                            <a target="_blank" href="https://github.com/bscaspar">
+                                https://github.com/bscaspar
+                                    </a>
+                        </Typography>
+                        <Typography variant="caption" noWrap>The code for this site is hosted on my public GH account in the PersonalSite repository, feel free to take a look!</Typography>
+                    </div>
+                    <div className={classes.contactContainer}>
+                        <Typography variant="h5" noWrap>Instagram</Typography>
+                        <Typography variant="body1" noWrap={true}>
+                            <a target="_blank" href="https://instagram.com/friendly_g">
+                                https://instagram.com/friendly_g
+                                </a>
+                        </Typography>
+                    </div>
+
+                </div>
+            </Grid>
+        </Grid>
+    )
+}
 }
 
 export default withStyles(styles)(Contact);
