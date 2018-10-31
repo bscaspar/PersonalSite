@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Grid, Typography, TextField, Button } from '@material-ui/core';
+import { Grid, Typography, TextField, Button, CircularProgress } from '@material-ui/core';
 import * as emailjs from 'emailjs-com';
 
 const styles = (theme) => ({
@@ -39,8 +39,12 @@ const styles = (theme) => ({
         color: '#4CAF50',
         float: 'right',
         transition: 'all 250ms linear',
-        padding: theme.spacing.unit,
+        margin: '14px',
     },
+    progress: {
+        margin: theme.spacing.unit,
+        float: 'right'
+    }
 });
 
 class Contact extends Component {
@@ -67,16 +71,19 @@ class Contact extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.setState({emailSending: true}, () => {
+        this.setState({
+            emailSending: true,
+            emailSuccess: ''
+        }, () => {
             this.sendEmail(this.state.name, this.state.email, this.state.message);
         })
         
-        this.setState({
-            name: '',
-            email: '',
-            message: '',
-            errorMessage: '',
-        })
+        // this.setState({
+        //     name: '',
+        //     email: '',
+        //     message: '',
+        //     errorMessage: '',
+        // })
     }
     sendEmail(name, email, message) {
 
@@ -96,8 +103,13 @@ class Contact extends Component {
             USER_ID
         ).then(
             (response) => {
-                this.setState({ emailSuccess: true,
-                                emailSending: false });
+                this.setState({ 
+                    name: '',
+                    email: '',
+                    message: '',
+                    errorMessage: '',
+                    emailSuccess: true,
+                    emailSending: false });
                 setTimeout (() => {
                     this.setState({
                         emailSuccess: ''
@@ -125,6 +137,7 @@ render() {
                         className={classes.textField}
                         value={this.state.name}
                         onChange={this.handleChange}
+                        disabled={this.state.emailSending}
                     />
                     <TextField
                         id="email"
@@ -135,6 +148,7 @@ render() {
                         className={classes.textField}
                         value={this.state.email}
                         onChange={this.handleChange}
+                        disabled={this.state.emailSending}
                     />
                     <TextField
                         id="message"
@@ -146,11 +160,13 @@ render() {
                         className={classes.textField}
                         value={this.state.message}
                         onChange={this.handleChange}
+                        disabled={this.state.emailSending}
                     />
                     <Typography className={classes.note} variant="caption">(You can also just email me, bradyscaspar@outlook.com, the form does literally the same thing and is here for practice) </Typography>
                     <Button variant="outlined" className={classes.button} color="primary" type="submit" disabled={this.state.emailSending}>
                         Submit
                     </Button>
+                    {this.state.emailSending && <CircularProgress className={classes.progress} size={34}/>}
                     {this.state.emailSuccess === true && <Typography className={classes.emailSuccess} variant="body2">Success!</Typography>}
                     {this.state.emailSuccess === false && <Typography className={classes.emailFail} variant="body2">The email didn't work :( try again or use the email listed above</Typography>}
                 </form>
@@ -174,7 +190,7 @@ render() {
                                 https://github.com/bscaspar
                                     </a>
                         </Typography>
-                        <Typography variant="caption" noWrap>The code for this site is hosted on my public GH account in the PersonalSite repository, feel free to take a look!</Typography>
+                        <Typography variant="caption" noWrap={false}>The code for this site is hosted on my public GH account in the PersonalSite repository, feel free to take a look!</Typography>
                     </div>
                     <div className={classes.contactContainer}>
                         <Typography variant="h5" noWrap>Instagram</Typography>
