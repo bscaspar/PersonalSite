@@ -4,16 +4,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
-const VENDOR_LIBS = [
-    'react', 'react-dom', 'react-router-dom', 'react-bootstrap', 'bootstrap', 'jquery', 'popper.js', 'emailjs-com'
-]
-
-
 const config = {
     'mode': 'development',
     entry: {
         bundle: './src/index.js',
-        vendor: VENDOR_LIBS
     },
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -97,6 +91,13 @@ const config = {
     ],
     optimization: {
         splitChunks: {
+            cacheGroups: {
+                vendors: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendors',
+                    chunks: 'all'
+                }
+            }
         }
     },
     devServer: {
