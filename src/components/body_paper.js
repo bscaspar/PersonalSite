@@ -42,8 +42,8 @@ class BodyPaper extends React.Component {
         return (
             <Paper className={classes.root} square={true} elevation={1}>
                 <Grid container className={classes.root.grid}>
-                    <Grid item xs={1} lg={2} />
-                    <Grid item xs={10} lg={8}>
+                    <Grid item sm={1} lg={2} />
+                    <Grid item xs={12} sm={10} lg={8}>
                         <Tabs
                             value={this.state.value}
                             onChange={this.handleChange}
@@ -57,7 +57,7 @@ class BodyPaper extends React.Component {
                         {value === 0 && <AboutMe />}
                         {value === 1 && <Contact />}
                     </Grid>
-                    <Grid item xs={1} lg={2} />
+                    <Grid item sm={1} lg={2} />
                 </Grid>
 
             </Paper>

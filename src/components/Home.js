@@ -23,12 +23,12 @@ const HomeGrid = (props) => {
             <SimpleAppBar />
             <main>
                 <Grid container className={classes.root}>
-                    <Grid item xs={1} />
-                    <Grid item xs={10}>
+                    <Grid item sm={1} />
+                    <Grid item sm={10}>
                         <HeaderPaper />
                         <BodyPaper />
                     </Grid>
-                    <Grid item xs={1} />
+                    <Grid item sm={1} />
                 </Grid>
             </main>    
             
