@@ -18,8 +18,8 @@ const styles = (theme) => ({
     button: {
         margin: theme.spacing.unit,
         float: 'right',
-        backgroundColor: theme.palette.secondary,
-        color: theme.palette.primary.light
+        border: theme.palette.primary.main,
+        border: '1px solid'
     },
     contactContainer: {
         marginTop: theme.spacing.unit
@@ -148,7 +148,7 @@ render() {
                         onChange={this.handleChange}
                     />
                     <Typography className={classes.note} variant="caption">(You can also just email me, bradyscaspar@outlook.com, the form does literally the same thing and is here for practice) </Typography>
-                    <Button variant="contained" className={classes.button} color="inherit" type="submit" disabled={this.state.emailSending}>
+                    <Button variant="outlined" className={classes.button} color="primary" type="submit" disabled={this.state.emailSending}>
                         Submit
                     </Button>
                     {this.state.emailSuccess === true && <Typography className={classes.emailSuccess} variant="body2">Success!</Typography>}

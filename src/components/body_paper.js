@@ -11,8 +11,12 @@ const styles = (theme) => ({
         paddingBottom: theme.spacing.unit * 2,
         flexGrow: 1
     },
+    tabRoot: {
+        backgroundColor: theme.palette.grey[100],
+    },
     tabSelected: {
-        backgroundColor: theme.palette.grey[100]
+        border: '1px solid',
+        borderColor: theme.palette.primary.main
     },
 });
 
@@ -44,11 +48,11 @@ class BodyPaper extends React.Component {
                             value={this.state.value}
                             onChange={this.handleChange}
                             indicatorColor="primary"
-                            textColor="primary"
+                            classes={{indicator: classes.tabIndicator}}
                             centered
                         >
-                            <Tab label="About Me" classes={{ selected: classes.tabSelected }} />
-                            <Tab label="Contact" classes={{ selected: classes.tabSelected }} />
+                            <Tab label="About Me" classes={{ root: classes.tabRoot, selected: classes.tabSelected}} style={{borderTopLeftRadius: "6px"}} />
+                            <Tab label="Contact" classes={{ root: classes.tabRoot, selected: classes.tabSelected }} style={{borderTopRightRadius: "6px"}}/>
                         </Tabs>
                         {value === 0 && <AboutMe />}
                         {value === 1 && <Contact />}
