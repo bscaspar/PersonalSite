@@ -13,8 +13,7 @@ const SimpleAppBar = (props) => {
     return (
         <div className={classes.root}>
             <AppBar position="static">
-                <Toolbar>
-                </Toolbar>
+                <Toolbar />
             </AppBar>
         </div>
     )

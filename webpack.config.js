@@ -87,7 +87,7 @@ const config = {
         }),
         new MiniCssExtractPlugin({
             filename: "style.css"
-        })
+        }),
     ],
     optimization: {
         splitChunks: {

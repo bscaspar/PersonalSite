@@ -1,6 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import { Paper, Typography, List, ListItem, ListItemText } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
+
+import { HEADER_SUBTEXT } from '../../assets/text_content';
 
 const styles = (theme) => ({
     paper: {
@@ -31,7 +33,7 @@ const WelcomePaper = (props) => {
                 Welcome to my site!
             </Typography>
             <Typography className={classes.intro} variant="subtitle1" color="textSecondary" paragraph>
-                I am a new web developer and use this site as a personal design project, and a testing ground for new ideas and frameworks (if you find anything broken, email me!). Things I'm working on right now:
+                {HEADER_SUBTEXT}
             </Typography>
             <Typography className={classes.listContainer}>
                 <a target="_blank" href="https://www.material-ui.com/">
@@ -54,26 +56,6 @@ const WelcomePaper = (props) => {
                     Node.js
                 </a>
             </Typography>
-                
-            
-            
-            {/*<List disablePadding>
-                    <ListItem dense>
-                        <ListItemText primary="Material UI" />
-                    </ListItem>
-                    <ListItem dense>
-                        <ListItemText primary="React" />
-                    </ListItem>
-                    <ListItem dense>
-                        <ListItemText primary="Redux" />
-                    </ListItem>
-                    <ListItem dense>
-                        <ListItemText primary="Webpack" />
-                    </ListItem>
-                    <ListItem dense>
-                        <ListItemText primary="Node.js" />
-                    </ListItem>
-            </List>*/}
         </Paper>
     )
 }

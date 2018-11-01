@@ -6,16 +6,13 @@ import SimpleAppBar from './simple_appbar';
 import HeaderPaper from './header_paper';
 import BodyPaper from './body_paper';
 
-
-const styles = theme => ({
+const styles = {
     root: {
         flexGrow: 1
     }
-});
-
+};
 
 const HomeGrid = (props) => {
-
     const { classes } = props;
 
     return (
@@ -31,7 +28,6 @@ const HomeGrid = (props) => {
                     <Grid item sm={1} />
                 </Grid>
             </main>    
-            
         </React.Fragment>
     );
 };

@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, Typography, TextField, Button, CircularProgress } from '@material-ui/core';
-import * as emailjs from 'emailjs-com';
 
 const styles = (theme) => ({
     container: {
@@ -47,97 +46,23 @@ const styles = (theme) => ({
     }
 });
 
-class Contact extends Component {
-    constructor(props) {
-        super(props);
+const Contact = (props) => {
 
-        this.state = {
-            name: '',
-            email: '',
-            message: '',
-            errorMessage: '',
-            emailSending: false,
-            emailSuccess: ''
-        };
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-
-    handleChange(e) {
-        this.setState({ [e.target.id]: e.target.value });
-    }
-
-    handleSubmit(e) {
-        e.preventDefault();
-        this.setState({
-            emailSending: true,
-            emailSuccess: ''
-        }, () => {
-            this.sendEmail(this.state.name, this.state.email, this.state.message);
-        })
-        
-        // this.setState({
-        //     name: '',
-        //     email: '',
-        //     message: '',
-        //     errorMessage: '',
-        // })
-    }
-    sendEmail(name, email, message) {
-
-        this.setState({emailSending: true},)
-
-        const SERVICE_ID = "bscaspar_gmail";
-        const TEMPLATE_ID = "template_G6LO5SQg";
-        const USER_ID = "user_ckhJga60nVGejK8C2ZFin";
-        emailjs.send(
-            SERVICE_ID,
-            TEMPLATE_ID,
-            {
-                name: name,
-                email: email,
-                message: message
-            },
-            USER_ID
-        ).then(
-            (response) => {
-                this.setState({ 
-                    name: '',
-                    email: '',
-                    message: '',
-                    errorMessage: '',
-                    emailSuccess: true,
-                    emailSending: false });
-                setTimeout (() => {
-                    this.setState({
-                        emailSuccess: ''
-                    });
-                    }, 3000);
-            }, 
-            (error) => {
-                this.setState({ emailSuccess: false,
-                                emailSending: false });
-        });
-    }
-
-render() {
-    const { classes } = this.props;
+    const { classes } = props;
 
     return (
         <Grid container className={classes.container} spacing={8}>
             <Grid item xs={12} md={6}>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={props.handleSubmit}>
                     <TextField
                         id="name"
                         label="Name"
                         variant="outlined"
                         required
                         className={classes.textField}
-                        value={this.state.name}
-                        onChange={this.handleChange}
-                        disabled={this.state.emailSending}
+                        value={props.name}
+                        onChange={props.handleFieldChange}
+                        disabled={props.emailSending}
                     />
                     <TextField
                         id="email"
@@ -146,9 +71,9 @@ render() {
                         variant="outlined"
                         required
                         className={classes.textField}
-                        value={this.state.email}
-                        onChange={this.handleChange}
-                        disabled={this.state.emailSending}
+                        value={props.email}
+                        onChange={props.handleFieldChange}
+                        disabled={props.emailSending}
                     />
                     <TextField
                         id="message"
@@ -158,17 +83,17 @@ render() {
                         variant="outlined"
                         required
                         className={classes.textField}
-                        value={this.state.message}
-                        onChange={this.handleChange}
-                        disabled={this.state.emailSending}
+                        value={props.message}
+                        onChange={props.handleFieldChange}
+                        disabled={props.emailSending}
                     />
                     <Typography className={classes.note} variant="caption">(You can also just email me, bradyscaspar@outlook.com, the form does literally the same thing and is here for practice) </Typography>
-                    <Button variant="outlined" className={classes.button} color="primary" type="submit" disabled={this.state.emailSending}>
+                    <Button variant="outlined" className={classes.button} color="primary" type="submit" disabled={props.emailSending}>
                         Submit
                     </Button>
-                    {this.state.emailSending && <CircularProgress className={classes.progress} size={34}/>}
-                    {this.state.emailSuccess === true && <Typography className={classes.emailSuccess} variant="body2">Success!</Typography>}
-                    {this.state.emailSuccess === false && <Typography className={classes.emailFail} variant="body2">The email didn't work :( try again or use the email listed above</Typography>}
+                    {props.emailSending && <CircularProgress className={classes.progress} size={34}/>}
+                    {props.emailSuccess === true && <Typography className={classes.emailSuccess} variant="body2">Success!</Typography>}
+                    {props.emailSuccess === false && <Typography className={classes.emailFail} variant="body2">The email didn't work :( try again or use the email listed above</Typography>}
                 </form>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -205,7 +130,6 @@ render() {
             </Grid>
         </Grid>
     )
-}
 }
 
 export default withStyles(styles)(Contact);
