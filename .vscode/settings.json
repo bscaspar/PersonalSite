@@ -1,2 +1,4 @@
 {
+    "appService.defaultWebAppToDeploy": "/subscriptions/5c25de12-ad33-46e8-9da8-cc84f4f9915b/resourceGroups/appsvc_rg_Windows_westus/providers/Microsoft.Web/sites/personal-site-bc",
+    "appService.deploySubpath": "build"
 }
