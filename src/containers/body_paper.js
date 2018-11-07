@@ -1,8 +1,8 @@
 import React from "react";
 import { Paper, withStyles, Grid, Tabs, Tab } from "@material-ui/core";
 
-import AboutMe from "./about_me";
-import Contact from "./contact";
+import AboutMe from "../components/about_me";
+import Contact from "../components/contact";
 import sendEmail from "../actions/send_email";
 
 const styles = theme => ({
