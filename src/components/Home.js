@@ -4,7 +4,7 @@ import { Grid, Typography } from "@material-ui/core";
 
 import SimpleAppBar from "./simple_appbar";
 import HeaderPaper from "./header_paper";
-import BodyPaper from "./body_paper";
+import BodyPaper from "../containers/body_paper";
 import icon from "../../assets/icons/favicon-32x32.png";
 
 const styles = {
