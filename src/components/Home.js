@@ -1,14 +1,23 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 
 import SimpleAppBar from "./simple_appbar";
 import HeaderPaper from "./header_paper";
-import BodyPaper from "../containers/body_paper";
+import BodyPaper from "./body_paper";
+import icon from "../../assets/icons/favicon-32x32.png";
 
 const styles = {
   root: {
     flexGrow: 1
+  },
+  footer: {
+    float: "right",
+    display: "table"
+  },
+  footerText: {
+    display: "table-cell",
+    verticalAlign: "middle"
   }
 };
 
@@ -28,6 +37,14 @@ const HomeGrid = props => {
           <Grid item sm={1} />
         </Grid>
       </main>
+      <footer>
+        <div className={classes.footer}>
+          <Typography className={classes.footerText} variant="caption">
+            © Brady Caspar {new Date().getFullYear()}
+          </Typography>
+          <img src={icon} />
+        </div>
+      </footer>
     </React.Fragment>
   );
 };
